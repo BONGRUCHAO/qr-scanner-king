@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "QR 扫描王"
+version = "1.0.0"
+id = "artifacts/qr-scanner-king"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20143
+
+[services.development]
+run = "pnpm --filter @workspace/qr-scanner-king run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/qr-scanner-king", "run", "build" ]
+publicDir = "artifacts/qr-scanner-king/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20143"
+BASE_PATH = "/"

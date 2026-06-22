@@ -81,6 +81,8 @@ export default function Home() {
             <Link href="/qr/wifi" className="hover:text-blue-600 transition-colors">Wi-Fi QR</Link>
             <Link href="/qr/vcard" className="hover:text-blue-600 transition-colors">vCard QR</Link>
             <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
+            <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link>
+            <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
           </nav>
           <span className="text-xs text-slate-400 hidden sm:block">Free · No sign-up · Instant</span>
         </div>
@@ -268,6 +270,10 @@ export default function Home() {
               <Link href="/qr/text" className="hover:text-blue-600">Text QR Code</Link>
               <Link href="/qr/social" className="hover:text-blue-600">Social QR Code</Link>
               <Link href="/blog" className="hover:text-blue-600">Blog</Link>
+              <Link href="/about" className="hover:text-blue-600">About</Link>
+              <Link href="/contact" className="hover:text-blue-600">Contact</Link>
+              <Link href="/privacy" className="hover:text-blue-600">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-blue-600">Terms of Service</Link>
             </nav>
             <p className="text-xs text-slate-400">© 2025 QR King · Free QR Code Generator</p>
           </div>

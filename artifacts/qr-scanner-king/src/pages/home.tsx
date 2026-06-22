@@ -9,19 +9,10 @@ export default function Home() {
   const [hasGenerated, setHasGenerated] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const isValidUrl = (value: string) => {
-    try {
-      new URL(value);
-      return true;
-    } catch {
-      return value.length > 0 && !value.includes(" ");
-    }
-  };
-
   const generateQR = useCallback(async () => {
     const trimmed = url.trim();
     if (!trimmed) {
-      setError("请输入网址");
+      setError("Please enter a URL");
       return;
     }
     setError("");
@@ -40,7 +31,7 @@ export default function Home() {
       setQrDataUrl(dataUrl);
       setHasGenerated(true);
     } catch {
-      setError("生成失败，请检查输入内容");
+      setError("Failed to generate QR code. Please check your input.");
     } finally {
       setIsGenerating(false);
     }
@@ -54,7 +45,7 @@ export default function Home() {
     if (!qrDataUrl) return;
     const link = document.createElement("a");
     link.href = qrDataUrl;
-    link.download = "qrcode-扫描王.png";
+    link.download = "qrcode-qrking.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -66,7 +57,7 @@ export default function Home() {
       <header className="py-4 px-6 flex items-center justify-between max-w-5xl mx-auto w-full">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)" }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <rect x="3" y="3" width="7" height="7" rx="1" fill="white"/>
               <rect x="14" y="3" width="7" height="7" rx="1" fill="white"/>
               <rect x="3" y="14" width="7" height="7" rx="1" fill="white"/>
@@ -79,20 +70,22 @@ export default function Home() {
               <rect x="18" y="18" width="3" height="3" rx="0.5" fill="white"/>
             </svg>
           </div>
-          <span className="font-bold text-lg text-slate-800 tracking-tight">QR 扫描王</span>
+          <span className="font-bold text-lg text-slate-800 tracking-tight">QR King</span>
         </div>
-        <span className="text-xs text-slate-400 hidden sm:block">免费 · 无需注册 · 即刻生成</span>
+        <span className="text-xs text-slate-400 hidden sm:block">Free · No sign-up · Instant</span>
       </header>
 
       {/* Hero */}
       <main className="flex-1 flex flex-col items-center px-4 pt-8 pb-16">
         <div className="text-center max-w-2xl mb-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
-            把任意网址变成
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, #2563eb 0%, #6366f1 100%)" }}>二维码</span>
+            Turn any URL into a{" "}
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, #2563eb 0%, #6366f1 100%)" }}>
+              QR Code
+            </span>
           </h1>
           <h2 className="text-base sm:text-lg text-slate-500 font-normal leading-relaxed">
-            粘贴网址，一键生成高清二维码，即时预览，下载即用。完全免费，无需注册。
+            Paste a link, generate a high-quality QR code instantly, preview it live, and download as PNG. 100% free — no account needed.
           </h2>
         </div>
 
@@ -101,7 +94,7 @@ export default function Home() {
           {/* URL Input */}
           <div className="mb-5">
             <label htmlFor="url-input" className="block text-sm font-semibold text-slate-700 mb-2">
-              输入网址 URL
+              Enter URL
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -118,8 +111,8 @@ export default function Home() {
                 onChange={(e) => { setUrl(e.target.value); setError(""); }}
                 onKeyDown={handleKeyDown}
                 placeholder="https://example.com"
-                aria-label="输入需要生成二维码的网址"
-                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 text-base input-focus transition-all duration-200"
+                aria-label="Enter the URL you want to turn into a QR code"
+                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 text-base transition-all duration-200"
                 style={{ outline: "none" }}
                 onFocus={(e) => { e.target.style.borderColor = "#2563eb"; e.target.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.12)"; e.target.style.background = "#fff"; }}
                 onBlur={(e) => { e.target.style.borderColor = ""; e.target.style.boxShadow = ""; e.target.style.background = ""; }}
@@ -137,9 +130,14 @@ export default function Home() {
           <button
             onClick={generateQR}
             disabled={isGenerating}
-            aria-label="生成二维码"
-            className="w-full py-3.5 rounded-xl text-white font-semibold text-base btn-primary disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
-            style={{ background: isGenerating ? "#93c5fd" : "linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)" }}
+            aria-label="Generate QR Code"
+            className="w-full py-3.5 rounded-xl text-white font-semibold text-base disabled:opacity-60 disabled:cursor-not-allowed"
+            style={{
+              background: isGenerating ? "#93c5fd" : "linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => { if (!isGenerating) { (e.target as HTMLButtonElement).style.transform = "translateY(-1px)"; (e.target as HTMLButtonElement).style.boxShadow = "0 8px 25px -5px rgba(37,99,235,0.45)"; } }}
+            onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.transform = ""; (e.target as HTMLButtonElement).style.boxShadow = ""; }}
           >
             {isGenerating ? (
               <span className="flex items-center justify-center gap-2">
@@ -147,9 +145,9 @@ export default function Home() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
-                正在生成…
+                Generating…
               </span>
-            ) : "Generate QR Code · 生成二维码"}
+            ) : "Generate QR Code"}
           </button>
 
           {/* QR Preview */}
@@ -164,7 +162,7 @@ export default function Home() {
                   <div className="p-3 bg-white rounded-2xl shadow-md">
                     <img
                       src={qrDataUrl}
-                      alt="生成的二维码"
+                      alt="Generated QR code"
                       width={240}
                       height={240}
                       className="block rounded-lg"
@@ -177,7 +175,7 @@ export default function Home() {
                     </p>
                     <button
                       onClick={downloadQR}
-                      aria-label="下载二维码 PNG"
+                      aria-label="Download QR code as PNG"
                       className="mt-3 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 font-semibold text-sm transition-all duration-200 hover:bg-blue-50 active:scale-95"
                       style={{ borderColor: "#2563eb", color: "#2563eb" }}
                     >
@@ -186,7 +184,7 @@ export default function Home() {
                         <polyline points="7 10 12 15 17 10"/>
                         <line x1="12" y1="15" x2="12" y2="3"/>
                       </svg>
-                      下载 PNG
+                      Download PNG
                     </button>
                   </div>
                 </div>
@@ -206,8 +204,8 @@ export default function Home() {
                       <line x1="21" y1="17.5" x2="21" y2="21" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
                   </div>
-                  <p className="text-slate-500 font-medium text-sm">二维码将在这里显示</p>
-                  <p className="text-slate-400 text-xs mt-1">输入网址并点击生成按钮</p>
+                  <p className="text-slate-500 font-medium text-sm">Your QR code will appear here</p>
+                  <p className="text-slate-400 text-xs mt-1">Enter a URL and click the button above</p>
                 </div>
               )}
             </div>
@@ -216,7 +214,7 @@ export default function Home() {
 
         {/* Features Section */}
         <section className="mt-14 max-w-2xl w-full" aria-labelledby="features-heading">
-          <h2 id="features-heading" className="text-xl font-bold text-slate-800 text-center mb-6">为什么选择 QR 扫描王？</h2>
+          <h2 id="features-heading" className="text-xl font-bold text-slate-800 text-center mb-6">Why use QR King?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
@@ -225,8 +223,8 @@ export default function Home() {
                     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                   </svg>
                 ),
-                title: "即刻生成",
-                desc: "输入网址后立即生成二维码，无需等待"
+                title: "Instant Generation",
+                desc: "QR codes are generated in milliseconds — no waiting"
               },
               {
                 icon: (
@@ -234,8 +232,8 @@ export default function Home() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 ),
-                title: "高清无损",
-                desc: "512×512 高分辨率，清晰可扫，无水印"
+                title: "High Resolution",
+                desc: "512×512 px output, sharp and scannable with no watermark"
               },
               {
                 icon: (
@@ -244,8 +242,8 @@ export default function Home() {
                     <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
                 ),
-                title: "一键下载",
-                desc: "直接下载为正方形 PNG，随时随地使用"
+                title: "One-click Download",
+                desc: "Save as a square PNG file, ready to use anywhere"
               }
             ].map((f) => (
               <div key={f.title} className="bg-white rounded-xl p-5 text-center" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(37,99,235,0.05)" }}>
@@ -262,13 +260,13 @@ export default function Home() {
         {/* How to use */}
         <section className="mt-10 max-w-2xl w-full" aria-labelledby="howto-heading">
           <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(37,99,235,0.05)" }}>
-            <h2 id="howto-heading" className="font-bold text-slate-800 mb-4">使用方法</h2>
+            <h2 id="howto-heading" className="font-bold text-slate-800 mb-4">How to use</h2>
             <ol className="space-y-3">
               {[
-                "在上方输入框中粘贴或输入任意网址（支持 http/https）",
-                "点击「Generate QR Code · 生成二维码」按钮",
-                "二维码实时生成并显示在预览区",
-                "点击「下载 PNG」保存为高清图片文件"
+                "Paste or type any URL into the input field above (http/https supported)",
+                "Click the \"Generate QR Code\" button",
+                "Your QR code is instantly generated and shown in the preview area",
+                "Click \"Download PNG\" to save the high-resolution image to your device"
               ].map((step, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)" }}>
@@ -284,7 +282,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-6 text-center text-xs text-slate-400 border-t border-slate-100 bg-white/50">
-        <p>© 2025 QR 扫描王 · 免费在线二维码生成工具 · 无需注册，打开即用</p>
+        <p>© 2025 QR King · Free Online QR Code Generator · No sign-up required</p>
       </footer>
 
       <canvas ref={canvasRef} className="hidden" />

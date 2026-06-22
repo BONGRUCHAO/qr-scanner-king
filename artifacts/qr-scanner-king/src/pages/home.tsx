@@ -55,9 +55,8 @@ export default function Home() {
         canonical="/"
         schema={[webAppSchema, faqSchema]}
       />
-
       {/* Header */}
-      <header className="py-4 px-6 border-b border-slate-100 bg-white/70 backdrop-blur-sm sticky top-0 z-50">
+      <header className="py-4 px-6 border-b border-slate-100 backdrop-blur-sm sticky top-0 z-50 bg-background">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)" }}>
@@ -87,7 +86,6 @@ export default function Home() {
           <span className="text-xs text-slate-400 hidden sm:block">Free · No sign-up · Instant</span>
         </div>
       </header>
-
       <main className="flex-1 flex flex-col items-center px-4 pt-10 pb-20">
 
         {/* Hero */}
@@ -249,7 +247,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
       <footer className="py-8 border-t border-slate-100 bg-white/60">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

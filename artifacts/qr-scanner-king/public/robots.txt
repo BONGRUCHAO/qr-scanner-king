@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://qrking.replit.app/sitemap.xml

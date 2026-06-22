@@ -1,0 +1,210 @@
+你是资深SEO工程师 + 技术前端工程优化专家，请对我的整个网站进行全面SEO重构优化。
+
+网站类型：在线工具网站（几秒生成定制二维码 / QR Code Generator）
+
+目标：
+- 提升Google自然搜索流量
+- 提升收录率与关键词排名
+- 提升点击率（CTR）
+- 提升转化率（使用工具）
+
+================================================
+一、全站SEO基础结构优化
+================================================
+
+请检查并优化整个网站：
+
+1. HTML语义结构优化
+- 使用正确的 header / main / section / article / footer
+- 每个页面必须结构清晰
+
+2. 每个页面必须包含：
+- 唯一 title（含关键词：QR Code Generator / QR Creator / Free QR Code）
+- meta description（120-160字符，强调免费/快速/无需注册）
+- 单一 H1（必须包含 “QR Code Generator” 或 “二维码生成器”）
+
+3. 添加：
+- sitemap.xml（如果没有请生成）
+- robots.txt（允许抓取重要页面）
+- canonical标签（避免重复页面）
+
+4. 内部链接结构优化：
+首页 → 工具页 → 场景页 → 教程页 → FAQ页
+
+5. 添加 Breadcrumb（面包屑导航）
+
+================================================
+二、On-Page SEO优化（核心页面）
+================================================
+
+优化二维码生成工具主页面：
+
+1. Title优化（60字符以内）：
+必须包含：
+- QR Code Generator
+- Free / Custom / Instant
+
+2. Description优化：
+- 强调：Free / No signup / Instant / Custom QR
+
+3. H1优化：
+示例风格：
+Free QR Code Generator - Create Custom QR Codes in Seconds
+
+4. 页面内容必须增加：
+- How to use（步骤说明）
+- Use cases（WiFi / URL / Business Card / Payment / Social Media）
+- FAQ（至少5个问题）
+
+5. 语义关键词覆盖：
+- qr code generator
+- free qr maker
+- custom qr code
+- qr code creator online
+- dynamic qr code（如支持）
+
+================================================
+三、Programmatic SEO（重点必须做）
+================================================
+
+请为网站建立可扩展SEO落地页系统：
+
+创建以下页面结构：
+
+/qr/url
+/qr/wifi
+/qr/vcard
+/qr/text
+/qr/social
+
+每个页面必须：
+1. 独立SEO Title & Description
+2. 独立H1
+3. 至少500字SEO内容（非重复模板）
+4. FAQ模块
+5. Schema.org结构化数据（WebApplication）
+6. 内链指向主工具页 + 其他QR类型页
+
+要求：
+- 可扩展（未来可无限增加 QR 类型）
+- 不允许重复内容（必须做语义差异化）
+
+================================================
+四、Schema结构化数据（提升排名）
+================================================
+
+请为所有页面添加 JSON-LD：
+
+1. WebApplication Schema
+- name
+- description
+- applicationCategory
+- offers: Free
+
+2. FAQPage Schema（所有FAQ）
+
+3. BreadcrumbList Schema
+
+4. potentialAction（如 Generate QR Code）
+
+必须符合 Google Rich Results 标准。
+
+================================================
+五、性能与Core Web Vitals优化
+================================================
+
+请优化网站性能：
+
+1. 提升LCP：
+- 图片懒加载
+- 减少JS阻塞
+
+2. 提升CLS：
+- 固定二维码生成区域尺寸
+- 避免布局跳动
+
+3. 提升INP：
+- debounce输入
+- 优化二维码生成逻辑
+
+4. 前端优化：
+- code splitting
+- lazy loading
+- 避免重复渲染
+
+================================================
+六、SEO内容系统（Blog）
+================================================
+
+创建 /blog 模块，并生成SEO文章结构：
+
+至少5篇文章：
+
+- What is QR Code and How It Works
+- How to Create QR Codes for Business
+- QR Code Marketing Guide 2026
+- Static vs Dynamic QR Code
+- Best Free QR Code Generator Tools
+
+要求：
+- 标题SEO优化
+- H2/H3结构清晰
+- FAQ模块
+- 内链到工具页
+- 自然关键词布局
+
+================================================
+七、关键词策略优化
+================================================
+
+建立关键词体系：
+
+核心关键词：
+- qr code generator
+- qr creator
+- free qr code maker
+
+长尾关键词：
+- qr code for wifi
+- qr code for business card
+- qr code for url
+- custom qr code design
+
+要求：
+- 分配到对应页面
+- 避免关键词堆砌
+- 自然语义覆盖
+
+================================================
+八、转化率优化（CRO + SEO）
+================================================
+
+优化用户路径：
+
+首页 → 输入 → 生成 → 下载（最多3步）
+
+增加：
+- Generate QR Now 按钮
+- Download QR 按钮
+- Customize QR Design
+
+增加信任元素：
+- Free
+- No signup required
+- Instant generation
+
+增加示例二维码预览，提高点击率
+
+================================================
+执行要求：
+================================================
+
+请直接修改代码（React / HTML / Flask / Node.js 均可）
+不要只给建议
+优先保证：
+- SEO结构正确
+- 页面可收录
+- Google可理解内容结构
+- 页面可扩展
+
+完成后输出修改点总结

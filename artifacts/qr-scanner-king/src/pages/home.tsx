@@ -96,7 +96,7 @@ export default function Home() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
             Free QR Code Generator —{" "}
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, #2563eb 0%, #6366f1 100%)" }}>
+            <span style={{ background: "linear-gradient(135deg, #2563eb 0%, #6366f1 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Create Custom QR Codes in Seconds
             </span>
           </h1>
